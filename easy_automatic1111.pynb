@@ -1,0 +1,105 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2e5a499b-0f9e-470f-a365-32fadc43c75c",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "!apt update && apt upgrade -y && apt install ffmpeg -y\n",
+    "!python -m pip install --upgrade pip"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "175d4090-a64e-4ee6-bd7e-0a8e2887888b",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "!git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git\n",
+    "%cd stable-diffusion-webui\n",
+    "#### Install CivitAI Browser ####\n",
+    "!cd extensions && git clone https://github.com/camenduru/sd-civitai-browser.git && cd sd-civitai-browser && sed -i 's/PIL/pillow/g' install.py && git clone https://github.com/thygate/stable-diffusion-webui-depthmap-script.git"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6ad3cc1a-4de8-405c-9723-2667ca39eede",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "if os.getcwd() == '/workspace/stable-diffusion-webui':\n",
+    "    !pip install -r requirements.txt\n",
+    "else:\n",
+    "    %cd stable-diffusion-webui\n",
+    "    !pip install -r requirements.txt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ab23c4d5-09f3-461f-ae24-ba7f922656c8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Install Controlnet 1.1 and Image browser"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8d8d2dd5-e056-4f60-ae45-489f58f64c2e",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "!apt install libcairo-dev -y\n",
+    "!cd extensions && git clone https://github.com/Mikubill/sd-webui-controlnet.git && git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b04d616b-e407-471b-9704-bcc51e356f21",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "!export COMMANDLINE_ARGS=\"--xformers --enable-insecure-extension-access --share\" && python launch.py"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
